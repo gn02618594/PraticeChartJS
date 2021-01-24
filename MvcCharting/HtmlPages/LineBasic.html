@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link href="../Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="../Scripts/Chart.min.js"></script>
+    <title></title>
+</head>
+<body>
+    <div class="container">
+        <div class="jumbotron">
+            <h2>以 Line Chart 折線圖繪製月均溫</h2>
+        </div>
+        <canvas id="lineChart"></canvas><!--宣告 canvas-->
+    </div>
+    <script>
+        var ctx = document.getElementById('lineChart');
+        var chart = new Chart(ctx,{
+            type: 'line',//指定圖表類型為 line 折線圖
+            data: {
+                labels: ['1月', '2月', '3月', '4月', '5月', '6月'],//指定 X 軸 Label 名稱
+                datasets: [{
+                    label: '臺北',
+                    data: [16, 15, 18, 21, 25, 27],//1~6 月份實際資料值
+                    fill: false,//填充方式
+                    backgroundColor: 'rgba(255,165,0,0.3)',
+                    borderColor: 'rgb(255,166,0)',
+                    pointStyle: 'circle',//資料點形狀
+                    pointBackgroundColor: 'rgb(0,255,0)',
+                    pointRadius: 5,//資料點半徑大小
+                    pointHoverRadius:10 //資料點 Hover 時的半徑大小
+                }]
+            },
+            options: {
+                responsive: true,//是否開啟 responsive 響應式
+                title: {//title 設定
+                    display: true,
+                    fontSize: 26,
+                    text:'1-6 月氣溫平均值'
+                },
+                tooltips: {// tooltips 設定
+                    mode: 'point',
+                    intersect: true
+                },
+                legend: {//legend 圖例設定
+                    position: 'bottom',
+                    labels: {
+                        fontColor:'black',
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
