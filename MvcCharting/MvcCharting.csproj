@@ -135,6 +135,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="HtmlPages\BarTravel.html" />
     <Content Include="HtmlPages\LineBasic.html" />
     <Content Include="HtmlPages\LineFIll.html" />
     <Content Include="HtmlPages\LineStyle.html" />
