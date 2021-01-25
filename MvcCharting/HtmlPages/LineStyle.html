@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link href="../Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="../Scripts/Chart.min.js"></script>
+    <title></title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <canvas id="chart1"></canvas>
+            </div>
+            <div class="col-md-6">
+                <canvas id="chart2"></canvas>
+            </div>
+            <div class="col-md-6">
+                <canvas id="chart3"></canvas>
+            </div>
+            <div class="col-md-6">
+                <canvas id="chart4"></canvas>
+            </div>
+            <div class="col-md-6">
+                <canvas id="chart5"></canvas>
+            </div>
+            <div class="col-md-6">
+                <canvas id="chart6"></canvas>
+            </div>
+            <div class="col-md-6">
+                <canvas id="chart7"></canvas>
+            </div>
+            <div class="col-md-6">
+                <canvas id="chart8"></canvas>
+            </div>
+        </div>
+    </div>
+    <script>
+        var ctx1 = document.getElementById('chart1');
+        var ctx2 = document.getElementById('chart2');
+        var ctx3 = document.getElementById('chart3');
+        var ctx4 = document.getElementById('chart4');
+        var ctx5 = document.getElementById('chart5');
+        var ctx6 = document.getElementById('chart6');
+        var ctx7 = document.getElementById('chart7');
+        var ctx8 = document.getElementById('chart8');
+
+        lineChart(ctx1, false, 'circle', 0.5, true);
+        lineChart(ctx2, 'origin', 'rectRounded', 0.3, true, [10, 10]);
+        lineChart(ctx3, 'start', 'triangle', 0.2, true, [5, 5]);
+        lineChart(ctx4, 'end', 'star', 0, true, [5, 2]);
+        lineChart(ctx5, 'start', 'cross', 0.2, true, [5, 2, 10, 5]);
+        lineChart(ctx6, 'start', 'crossRot', 0, true, [20, 5, 5, 5]);
+        lineChart(ctx7, false, 'line', 0, false);
+        lineChart(ctx8, false, 'dash', 0, false);
+
+        //變數,填充模式,點的形狀,貝茲曲線參數,是否顯示線條,Dash 線條
+        function lineChart(context, fillmode, point, curve, showline, dash) {
+            var chart = new Chart(context, {
+                type: 'line',
+                data: {
+                    labels: ['1月', '2月', '3月', '4月', '5月', '6月'],
+                    datasets: [{
+                        label:'1-6 月均溫',
+                        data: [16, 15, 18, -21, 25, 27],
+                        fill: fillmode,//填充模式
+                        pointStyle: point,//點的形狀
+                        lineTension: curve,//貝茲曲線參數
+                        showLine: showline,//是否顯示線條
+                        borderDash: dash,//Dash 線條
+                        pointHoverRadius: 15,//點 hover 時的半徑
+                        backgroundColor: 'rgba(255,165,50,0.3)',//填充色
+                        borderColor: 'rgb(255,165,0)',//線條色
+                        pointBackgroundColor: 'rgb(255,255,0)',//點的背景色
+                        pointBorderColor: 'rgb(0,0,255)'//點的外框色
+                    }]
+                },
+                options: {
+                    responsive: true,//是否開啟 responsive 響應式
+                    title: {//title 設定
+                        display: true,
+                        fontSize: 26,
+                        text: '1-6 月氣溫平均值'
+                    },
+                    tooltips: {// tooltips 設定
+                        mode: 'point',
+                        intersect: true
+                    },
+                    legend: {//legend 圖例設定
+                        position: 'bottom',
+                        labels: {
+                            fontColor: 'black',
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
