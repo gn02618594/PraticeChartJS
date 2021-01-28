@@ -1,0 +1,89 @@
+﻿
+@{
+    ViewBag.Title = "BarTravel";
+    var footerText = DateTime.Now.Year + "年 / " + DateTime.Now.Month + " 月投票統計結果";
+    var countries = Json.Encode(ViewBag.Countries);
+    var votes = Json.Encode(ViewBag.Votes);
+}
+
+<div class="row">
+<div class="col-md-6">
+    <div class="panel panel-primary">
+        <div class="panel-heading">旅遊行程投票 - 直向</div>
+        <div class="panel-body">
+            <canvas id="verticalBar"></canvas>
+        </div>
+        <div class="panel-footer">@footerText</div>
+    </div>
+</div>
+<div class="col-md-6">
+    <div class="panel panel-primary">
+        <div class="panel-heading">旅遊行程投票 - 橫向</div>
+        <div class="panel-body">
+            <canvas id="horizontalBar"></canvas>
+        </div>
+        <div class="panel-footer">@footerText</div>
+    </div>
+</div>
+</div>
+
+@section endJS{
+    <script>
+        const barDirection = {
+            verital: 'bar',
+            horizontal: 'horizontalBar'
+        };
+
+        var ctx1 = document.getElementById('verticalBar');
+        BarChart(ctx1, barDirection.verital);
+
+        var ctx2 = document.getElementById('horizontalBar');
+        BarChart(ctx2, barDirection.horizontal);
+
+        function BarChart(context, barChartDirection) {
+            if (!(barChartDirection == 'bar' || barChartDirection == 'horizontalBar')) {
+                return;
+            }
+            var myChart = new Chart(context, {
+                type: barChartDirection,
+                data: {
+                    labels: @Html.Raw(countries),
+                    datasets: [{
+                        label: '旅遊行程投票',
+                        data: @Html.Raw(votes),
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54,162,235,0.2)',
+                            'rgba(255,206,86,0.2)',
+                            'rgba(75,192,192,0.2)',
+                            'rgba(153,102,255,0.2)',
+                            'rgba(255,159,64,0.2)'
+                        ], borderColor: [//設定長條圖外框色
+                            'rgba(255,99,132,1)',
+                            'rgba(54,162,235,1)',
+                            'rgba(255,206,86,1)',
+                            'rgba(75,192,192,1)',
+                            'rgba(153,102,255,1)',
+                            'rgba(255,159,64,1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        xAxes: [{
+                            ticks: {
+                                beginAtZero:true,//X 軸刻度是否從 0 開始
+                            }
+                        }],
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,//Y 軸刻度是否從 0 開始
+                            }
+                        }],
+                    }
+                }
+            });
+        }
+    </script>>
+}

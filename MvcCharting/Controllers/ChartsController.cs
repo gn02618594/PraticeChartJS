@@ -46,5 +46,14 @@ namespace MvcCharting.Controllers
         public ActionResult BarTravel() {
             return View();
         }
+
+        public ActionResult BarTravelData()
+        {
+            string[] countries = { "美國", "日本", "泰國", "琉球", "紐西蘭", "澳洲" };
+            int[] votes = { 8,22,13,15,17,21};
+            ViewBag.Countries = countries;
+            ViewBag.Votes = votes;
+            return View();
+        }
     }
 }

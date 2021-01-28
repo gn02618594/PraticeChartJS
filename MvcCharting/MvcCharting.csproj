@@ -179,6 +179,7 @@
     <Content Include="Views\Charts\LineTemperature.cshtml" />
     <Content Include="Views\Charts\LineTemperatureData.cshtml" />
     <Content Include="Views\Charts\BarTravel.cshtml" />
+    <Content Include="Views\Charts\BarTravelData.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
