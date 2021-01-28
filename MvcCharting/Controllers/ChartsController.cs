@@ -42,5 +42,9 @@ namespace MvcCharting.Controllers
             };
             return View(Locations);
         }
+
+        public ActionResult BarTravel() {
+            return View();
+        }
     }
 }
