@@ -66,5 +66,19 @@ namespace MvcCharting.Controllers
             ViewBag.sedanScores = sedanScores;
             return View();
         }
+
+        public ActionResult PieScalesData() {
+            string[] productLabels = { "3C電子", "食品", "服飾", "保養品", "鞋子", "家電" };
+            double[] productData = { 39.1, 8.7, 15, 14, 8, 15.2 };
+            string[] countryLabels = { "中國", "日本",  "韓國", "越南", "泰國","新加坡" };
+            double[] countryData = { 45,11, 14, 8, 10,12 };
+
+            ViewBag.productLabels = productLabels;
+            ViewBag.productData = productData;
+            ViewBag.countryLabels = countryLabels;
+            ViewBag.countryData = countryData;
+
+            return View();
+        }
     }
 }

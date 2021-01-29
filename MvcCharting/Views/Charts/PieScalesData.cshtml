@@ -1,0 +1,71 @@
+﻿
+@{
+    ViewBag.Title = "PieSalesData";
+
+    var productLabels = Json.Encode(ViewBag.productLabels);
+    var productData = Json.Encode(ViewBag.productData);
+    var countryLabels = Json.Encode(ViewBag.countryLabels);
+    var countryData = Json.Encode(ViewBag.countryData);
+
+}
+<div class="jumbotron alert-success">
+    <h2>模範生購物公司年度產品營收及貢獻度</h2>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <canvas id="peiChart"></canvas>
+    </div>
+    <div class="col-md-6">
+        <canvas id="doughnutChart"></canvas>
+    </div>
+</div>
+
+@section endJS{
+    <script src="~/Assets/js/Utility.js"></script>
+    <script>
+
+        const chartDirection = {
+            pie: 'pie',
+            doughnut:'doughnut'
+        };
+
+        var ctxPie = document.getElementById('peiChart');
+        PieChart(ctxPie, 'pie',@Html.Raw(productLabels),@Html.Raw(productData));
+
+        var ctxDoughnut = document.getElementById('doughnutChart');
+        PieChart(ctxDoughnut,'doughnut',@Html.Raw(countryLabels),@Html.Raw(countryData));
+
+        function PieChart(context, chartType,PieLabels,PieData) {
+            if (!(chartType == 'pie' || chartType == 'doughnut')) {
+                return;
+            }
+            var mychart = new Chart(context, {
+                type: chartType,
+                data: {
+                    labels: PieLabels,
+                    datasets: [{
+                        data: PieData,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54,162,235,0.2)',
+                            'rgba(255,206,86,0.2)',
+                            'rgba(75,192,192,0.2)',
+                            'rgba(153,102,255,0.2)',
+                            'rgba(255,159,64,0.2)'
+                        ], borderColor: [//設定長條圖外框色
+                            'rgba(255,99,132,1)',
+                            'rgba(54,162,235,1)',
+                            'rgba(255,206,86,1)',
+                            'rgba(75,192,192,1)',
+                            'rgba(153,102,255,1)',
+                            'rgba(255,159,64,1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                }
+            });
+        }
+    </script>
+}

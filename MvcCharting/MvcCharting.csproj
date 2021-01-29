@@ -181,6 +181,7 @@
     <Content Include="Views\Charts\BarTravel.cshtml" />
     <Content Include="Views\Charts\BarTravelData.cshtml" />
     <Content Include="Views\Charts\RadarCarData.cshtml" />
+    <Content Include="Views\Charts\PieScalesData.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
