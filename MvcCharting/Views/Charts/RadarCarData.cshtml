@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewBag.Title = "RadarCar";
+    var footerText = "汽車雜誌編輯評比";
+    var ScopeLabels = Json.Encode(ViewBag.scopeLabels);
+    var suvScores = Json.Encode(ViewBag.suvScores);
+    var sedanScores = Json.Encode(ViewBag.sedanScores);
+}
+<div class="jumbotron alert-success">
+    <h2>以 Radar Chart 繪製車種不同面相比較</h2>
+</div>
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <div class="panel panel-primary">
+            <div class="panel-heading"><h3>Radar 雷達圖 - SUV 與轎車六大面向比較</h3></div>
+            <div class="panel-body">
+                <canvas id="radarChart"></canvas>
+            </div>
+            <div class="panel-footer"><h4>@footerText</h4></div>
+        </div>
+    </div>
+</div>
+
+@section endJS{
+    <script>
+        var ctx = document.getElementById('radarChart');
+        var chart = new Chart(ctx, {
+            type: 'radar',
+            data: {
+                labels:@Html.Raw(ScopeLabels),
+                datasets: [{
+                    label: 'SUV',
+                    data:@Html.Raw(suvScores),
+                    backgroundColor: 'rgba(0,255,255,0.3)'
+                },
+                    {
+                        label: '轎車',
+                        data:@Html.Raw(sedanScores),
+                        backgroundColor: 'rgba(153,50,204,0.3)',
+                    }
+                ]
+            },
+            options: {}
+        });
+    </script>
+}

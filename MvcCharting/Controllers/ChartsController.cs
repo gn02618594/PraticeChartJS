@@ -55,5 +55,16 @@ namespace MvcCharting.Controllers
             ViewBag.Votes = votes;
             return View();
         }
+
+        public ActionResult RadarCarData() {
+            string[] scopeLabels = { "新潮", "價格", "維修", "性能", "油耗", "配備" };
+            int[] suvScores = { 90, 70, 80, 88, 50, 65 };
+            int[] sedanScores = { 64, 82, 85, 76, 93, 58 };
+
+            ViewBag.scopeLabels = scopeLabels;
+            ViewBag.suvScores = suvScores;
+            ViewBag.sedanScores = sedanScores;
+            return View();
+        }
     }
 }
